@@ -1,0 +1,41 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "MIT"
+issueTrackerURL = "https://github.com/Sarinsa/InstantDeath/issues"
+
+[[mods]]
+logoFile = "banner.png"
+authors = "Sarinsa, Father Toast"
+credits = "Yeah :)"
+version = "${file.jarVersion}"
+displayName = "Instant Death"
+modId = "instantdeath"
+description = '''
+Instant Death is a mod that allows you to configure damage types to instantly kill you.
+By default these damage types include drowning, starving and touching lava.
+
+Download: https://www.curseforge.com/members/fathertoast/projects/
+
+Source: https://github.com/Sarinsa/InstantDeath
+
+Discussion: https://discord.gg/GFTzTdX/
+'''
+
+[[dependencies.instantdeath]]
+modId = "forge"
+mandatory = true
+versionRange = "[47.4,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.instantdeath]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1]"
+ordering = "NONE"
+side = "BOTH"
+
+# A URL to query for updates for this mod. See the JSON update specification https://mcforge.readthedocs.io/en/latest/gettingstarted/autoupdate/
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+# A URL for the "homepage" for this mod, displayed in the mod UI
+#displayURL="" #optional
