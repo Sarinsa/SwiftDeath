@@ -1,4 +1,4 @@
-package com.sarinsa.instantdeath.common.core;
+package com.fathertoast.instantdeath.common.core;
 
 import fathertoast.crust.api.config.common.AbstractConfigCategory;
 import fathertoast.crust.api.config.common.AbstractConfigFile;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class Config {
     
-    private static final ConfigManager MANAGER = ConfigManager.create( "InstantDeath", InstantDeath.MODID );
+    private static final ConfigManager MANAGER = ConfigManager.create( "SwiftDeath", SwiftDeath.MODID );
     
     public static final MainConfig MAIN = new MainConfig( MANAGER, "main" );
     

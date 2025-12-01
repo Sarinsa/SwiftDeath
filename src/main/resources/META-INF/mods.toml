@@ -8,8 +8,8 @@ logoFile = "banner.png"
 authors = "Sarinsa, Father Toast"
 credits = "Yeah :)"
 version = "${file.jarVersion}"
-displayName = "Instant Death"
-modId = "instantdeath"
+displayName = "Swift Death"
+modId = "swiftdeath"
 description = '''
 A simple mod that allows you to configure damage types to insta-kill players or other living creatures.
 
@@ -20,21 +20,21 @@ Source: https://github.com/Sarinsa/InstantDeath
 Discussion: https://discord.gg/GFTzTdX/
 '''
 
-[[dependencies.instantdeath]]
+[[dependencies.swiftdeath]]
 modId = "forge"
 mandatory = true
 versionRange = "[47.4,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.instantdeath]]
+[[dependencies.swiftdeath]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20.1]"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.instantdeath]]
+[[dependencies.swiftdeath]]
 modId = "crust"
 mandatory = true
 versionRange = "[4.9.15,)"

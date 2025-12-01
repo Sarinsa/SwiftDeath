@@ -7,7 +7,7 @@ plugins {
 
 // The mod's version and id
 version = "${mc_version}-${mod_version}"
-archivesBaseName = 'instantdeath'
+archivesBaseName = 'swiftdeath'
 group = "fathertoast.${archivesBaseName}"
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -26,29 +26,29 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                "instantdeath" {
+                "swiftdeath" {
                     source sourceSets.main
                 }
             }
         }
 
         client {
-            property 'forge.enabledGameTestNamespaces', "instantdeath"
+            property 'forge.enabledGameTestNamespaces', "swiftdeath"
         }
 
         server {
-            property 'forge.enabledGameTestNamespaces', "instantdeath"
+            property 'forge.enabledGameTestNamespaces', "swiftdeath"
             args '--nogui'
         }
 
         gameTestServer {
-            property 'forge.enabledGameTestNamespaces', "instantdeath"
+            property 'forge.enabledGameTestNamespaces', "swiftdeath"
         }
 
         data {
             workingDirectory project.file('run-data')
 
-            args '--mod', "instantdeath", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', "swiftdeath", '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
 }
@@ -78,7 +78,7 @@ dependencies {
 tasks.named('jar', Jar).configure {
     manifest {
         attributes([
-                'Specification-Title'     : "instantdeath",
+                'Specification-Title'     : "swiftdeath",
                 'Specification-Vendor'    : "Sarinsa",
                 'Specification-Version'   : '1', // We are version 1 of ourselves
                 'Implementation-Title'    : project.name,

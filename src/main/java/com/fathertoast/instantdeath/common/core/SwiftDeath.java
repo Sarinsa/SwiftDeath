@@ -1,4 +1,4 @@
-package com.sarinsa.instantdeath.common.core;
+package com.fathertoast.instantdeath.common.core;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.Registries;
@@ -14,17 +14,17 @@ import org.slf4j.Logger;
 import java.util.Objects;
 
 
-@Mod( InstantDeath.MODID )
-public class InstantDeath {
+@Mod( SwiftDeath.MODID )
+public class SwiftDeath {
     
     /** The mod ID used by this mod. */
-    public static final String MODID = "instantdeath";
+    public static final String MODID = "swiftdeath";
     
     /** The logger used by this mod. */
     private static final Logger LOGGER = LogUtils.getLogger();
     
     
-    public InstantDeath( FMLJavaModLoadingContext context ) {
+    public SwiftDeath( FMLJavaModLoadingContext context ) {
         Config.initialize();
         MinecraftForge.EVENT_BUS.addListener( this::onLivingHurt );
     }
