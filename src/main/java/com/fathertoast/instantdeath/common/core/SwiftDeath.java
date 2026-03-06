@@ -11,7 +11,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
@@ -25,9 +24,11 @@ public class SwiftDeath {
     public static final String MODID = "swiftdeath";
     
     /** The logger used by this mod. */
+    @SuppressWarnings( "unused" )
     private static final Logger LOGGER = LogUtils.getLogger();
     
     
+    @SuppressWarnings( "unused" )
     public SwiftDeath( FMLJavaModLoadingContext context ) {
         Config.initialize();
         MinecraftForge.EVENT_BUS.addListener( this::onLivingHurt );
@@ -46,6 +47,7 @@ public class SwiftDeath {
      */
     @SubscribeEvent( priority = EventPriority.LOWEST )
     public void onLivingHurt( LivingHurtEvent event ) {
+        // noinspection resource
         if ( event.getEntity().level().isClientSide ) return;
         
         // noinspection resource
