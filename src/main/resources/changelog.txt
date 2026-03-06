@@ -1,4 +1,5 @@
 1.20.1-1.0.1
+    - No longer needs to be installed on the client (but can be).
     - Fixed event listener running damage checks on both client and server.
     - The config button in the mod list now opens this mod's Crust configs.
 1.20.1-1.0.0

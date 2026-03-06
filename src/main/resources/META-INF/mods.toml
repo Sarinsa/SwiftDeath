@@ -8,6 +8,7 @@ logoFile = "banner.png"
 authors = "Sarinsa, Father Toast"
 credits = "Yeah :)"
 version = "${file.jarVersion}"
+displayTest = "IGNORE_SERVER_VERSION"
 displayName = "Swift Death"
 modId = "swiftdeath"
 description = '''
