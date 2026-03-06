@@ -76,7 +76,7 @@ public class Config {
         }
     }
     
-    /** Performs loading of configs in this mod. Added to deferred work queue at common setup. */
+    /** Performs loading of configs in this mod. */
     public static void initialize() {
         MAIN.SPEC.initialize();
     }
