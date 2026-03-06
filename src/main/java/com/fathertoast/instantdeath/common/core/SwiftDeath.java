@@ -1,13 +1,17 @@
 package com.fathertoast.instantdeath.common.core;
 
 import com.mojang.logging.LogUtils;
+import fathertoast.crust.api.config.client.ClientConfigUtil;
 import net.minecraft.core.registries.Registries;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 
@@ -27,6 +31,10 @@ public class SwiftDeath {
     public SwiftDeath( FMLJavaModLoadingContext context ) {
         Config.initialize();
         MinecraftForge.EVENT_BUS.addListener( this::onLivingHurt );
+        
+        // Tell Forge to open the config editor when our mod's "Config" button is clicked in the Mods screen.
+        // noinspection Convert2MethodRef
+        DistExecutor.unsafeRunWhenOn( Dist.CLIENT, () -> () -> ClientConfigUtil.registerConfigButtonAsEditScreen() );
     }
     
     /**
@@ -38,6 +46,8 @@ public class SwiftDeath {
      */
     @SubscribeEvent( priority = EventPriority.LOWEST )
     public void onLivingHurt( LivingHurtEvent event ) {
+        if ( event.getEntity().level().isClientSide ) return;
+        
         // noinspection resource
         final String typeId = Objects.requireNonNull( event.getEntity().level().registryAccess().registryOrThrow( Registries.DAMAGE_TYPE )
                 .getKey( event.getSource().type() ) ).toString();
