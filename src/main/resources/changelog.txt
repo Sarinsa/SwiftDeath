@@ -1,5 +1,6 @@
 1.20.1-1.0.2
     - Rewrote config to utilize Crust's fuzzy collection API.
+    - Bumped minimum required Crust version to 4.17+.
 1.20.1-1.0.1
     - No longer needs to be installed on the client (but can be).
     - Fixed event listener running damage checks on both client and server.
