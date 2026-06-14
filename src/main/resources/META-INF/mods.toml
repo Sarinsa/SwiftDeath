@@ -38,7 +38,7 @@ side = "BOTH"
 [[dependencies.swiftdeath]]
 modId = "crust"
 mandatory = true
-versionRange = "[4.9.15,)"
+versionRange = "[4.17,)"
 ordering = "BEFORE"
 side = "BOTH"
 

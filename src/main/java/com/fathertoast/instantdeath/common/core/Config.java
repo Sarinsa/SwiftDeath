@@ -1,16 +1,21 @@
 package com.fathertoast.instantdeath.common.core;
 
-import fathertoast.crust.api.config.common.AbstractConfigCategory;
 import fathertoast.crust.api.config.common.AbstractConfigFile;
 import fathertoast.crust.api.config.common.ConfigManager;
-import fathertoast.crust.api.config.common.field.PredicateStringListField;
-import net.minecraft.resources.ResourceLocation;
+import fathertoast.crust.api.config.common.field.collection.RegistryListField;
+import fathertoast.crust.api.config.common.field.collection.RegistrySetField;
+import fathertoast.crust.api.config.common.value.collection.RegistryList;
+import fathertoast.crust.api.config.common.value.collection.RegistrySet;
+import fathertoast.crust.api.config.common.value.collection.key.IRegWrapper;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.List;
 
+@SuppressWarnings( "UnstableApiUsage" )
 public class Config {
     
     private static final ConfigManager MANAGER = ConfigManager.create( "SwiftDeath", SwiftDeath.MODID );
@@ -18,61 +23,36 @@ public class Config {
     public static final MainConfig MAIN = new MainConfig( MANAGER, "main" );
     
     
-    public static class MainConfig extends AbstractConfigFile {
+    public static class MainConfig extends AbstractConfigFile.Simple {
         
-        public GeneralCategory GENERAL;
+        public final RegistrySetField<EntityType<?>> affectedEntities;
+        public final RegistrySetField<DamageType> instakillDamageTypes;
         
         public MainConfig( ConfigManager cfgManager, String cfgName ) {
             super( cfgManager, cfgName,
                     "The primary config for this mod." );
             
-            GENERAL = new GeneralCategory( this );
+            affectedEntities = SPEC.define( new RegistrySetField<>( "affected_entities", createDefaultAffectedEntities(),
+                    "A list of entities that should get insta-killed by the below listed damage types.",
+                    "By default, this only includes players." ) );
+            
+            instakillDamageTypes = SPEC.define( new RegistrySetField<>( "instakill_damage_types", createDefaultDamageTypes(),
+                    "A list of IDs for damage types that should cause instant death.",
+                    "By default, this includes drowning, starving or lava damage." ) );
         }
         
-        public static class GeneralCategory extends AbstractConfigCategory<MainConfig> {
-            
-            public final PredicateStringListField affectedEntities;
-            public final PredicateStringListField instakillDamageTypes;
-            
-            public GeneralCategory( MainConfig parent ) {
-                super( parent, "general", "General settings for Instant Death." );
-                
-                affectedEntities = SPEC.define( new PredicateStringListField( "affected_entities", "entity type ID", makeDefaultAffectedEntities(),
-                        GeneralCategory::isValidId,
-                        "A list of IDs for entity types that should get insta-killed by the below listed damage types.",
-                        "By default, this only includes players." ) );
-                
-                instakillDamageTypes = SPEC.define( new PredicateStringListField( "instakill_damage_types", "damage type ID", makeDefaultDamageTypes(),
-                        GeneralCategory::isValidId,
-                        "A list of IDs for damage types that should cause instant death.",
-                        "By default, this includes drowning, starving or lava damage." ) );
-            }
-            
-            private List<String> makeDefaultAffectedEntities() {
-                // noinspection ConstantConditions
-                return List.of(
-                        ForgeRegistries.ENTITY_TYPES.getKey( EntityType.PLAYER ).toString()
-                );
-            }
-            
-            private List<String> makeDefaultDamageTypes() {
-                return List.of(
-                        DamageTypes.DROWN.location().toString(),
-                        DamageTypes.STARVE.location().toString(),
-                        DamageTypes.LAVA.location().toString()
-                );
-            }
-            
-            /**
-             * @return True if the given string contains a namespace and path separated by ':',
-             * and passes the {@link ResourceLocation#isValidResourceLocation(String)} check.
-             */
-            private static boolean isValidId( String value ) {
-                String[] parts = value.split( ":" );
-                if( parts.length != 2 ) return false;
-                
-                return ResourceLocation.isValidResourceLocation( value );
-            }
+        private static RegistrySet<EntityType<?>> createDefaultAffectedEntities() {
+            return new RegistrySet.Builder<>( ForgeRegistries.ENTITY_TYPES )
+                    .add( EntityType.PLAYER )
+                    .build();
+        }
+        
+        private static RegistrySet<DamageType> createDefaultDamageTypes() {
+            return new RegistrySet.Builder<>( Registries.DAMAGE_TYPE )
+                    .add( DamageTypes.DROWN )
+                    .add( DamageTypes.STARVE )
+                    .add( DamageTypes.LAVA )
+                    .build();
         }
     }
     
