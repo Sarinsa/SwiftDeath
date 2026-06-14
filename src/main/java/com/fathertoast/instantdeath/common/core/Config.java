@@ -2,18 +2,13 @@ package com.fathertoast.instantdeath.common.core;
 
 import fathertoast.crust.api.config.common.AbstractConfigFile;
 import fathertoast.crust.api.config.common.ConfigManager;
-import fathertoast.crust.api.config.common.field.collection.RegistryListField;
 import fathertoast.crust.api.config.common.field.collection.RegistrySetField;
-import fathertoast.crust.api.config.common.value.collection.RegistryList;
 import fathertoast.crust.api.config.common.value.collection.RegistrySet;
-import fathertoast.crust.api.config.common.value.collection.key.IRegWrapper;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.EntityType;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.List;
 
 @SuppressWarnings( "UnstableApiUsage" )
 public class Config {
